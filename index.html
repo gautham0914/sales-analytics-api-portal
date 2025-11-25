@@ -1,20 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sales Analytics API Portal</title>
+    <meta charset="UTF-8">
+    <title>Sales Analytics API – Developer Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .endpoint {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        button {
+            background: #4A90E2;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #357ABD;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <h1>Sales Analytics API Portal</h1>
-  <p>Click any endpoint to test it:</p>
 
-  <ul>
-    <li><a href="https://sales-analytics-app-2.onrender.com/">Home</a></li>
-    <li><a href="https://sales-analytics-app-2.onrender.com/total-global-sales" target="_blank">Total Global Sales</a></li>
-    <li><a href="https://sales-analytics-app-2.onrender.com/top-games" target="_blank">Top Games</a></li>
-    <li><a href="https://sales-analytics-app-2.onrender.com/sales-by-genre" target="_blank">Sales by Genre</a></li>
-    <li><a href="https://sales-analytics-app-2.onrender.com/sales-by-platform" target="_blank">Sales by Platform</a></li>
-    <li><a href="https://sales-analytics-app-2.onrender.com/yearly-sales" target="_blank">Yearly Sales</a></li>
-    <li><a href="https://sales-analytics-app-2.onrender.com/Publisher-sales" target="_blank">Publisher Sales</a></li>
-  </ul>
+<h1>📊 Sales Analytics API – Developer Portal</h1>
+<p style="text-align:center;">Live API URL: <b>https://sales-analytics-app-2.onrender.com</b></p>
+
+<script>
+    const BASE_URL = "https://sales-analytics-app-2.onrender.com";
+
+    function callEndpoint(endpoint) {
+        const pre = document.getElementById(endpoint.replace("/", ""));
+
+        fetch(BASE_URL + endpoint)
+            .then(res => res.json())
+            .then(data => {
+                pre.style.display = "block";
+                pre.textContent = JSON.stringify(data, null, 4);
+            })
+            .catch(err => {
+                pre.style.display = "block";
+                pre.textContent = "Error: " + err;
+            });
+    }
+</script>
+
+<div class="endpoint">
+    <h2>GET /total-global-sales</h2>
+    <button onclick="callEndpoint('/total-global-sales')">Run</button>
+    <pre id="total-global-sales"></pre>
+</div>
+
+<div class="endpoint">
+    <h2>GET /top-games</h2>
+    <button onclick="callEndpoint('/top-games')">Run</button>
+    <pre id="top-games"></pre>
+</div>
+
+<div class="endpoint">
+    <h2>GET /sales-by-genre</h2>
+    <button onclick="callEndpoint('/sales-by-genre')">Run</button>
+    <pre id="sales-by-genre"></pre>
+</div>
+
+<div class="endpoint">
+    <h2>GET /sales-by-platform</h2>
+    <button onclick="callEndpoint('/sales-by-platform')">Run</button>
+    <pre id="sales-by-platform"></pre>
+</div>
+
+<div class="endpoint">
+    <h2>GET /yearly-sales</h2>
+    <button onclick="callEndpoint('/yearly-sales')">Run</button>
+    <pre id="yearly-sales"></pre>
+</div>
+
+<div class="endpoint">
+    <h2>GET /Publisher-sales</h2>
+    <button onclick="callEndpoint('/Publisher-sales')">Run</button>
+    <pre id="Publisher-sales"></pre>
+</div>
+
 </body>
 </html>
+
